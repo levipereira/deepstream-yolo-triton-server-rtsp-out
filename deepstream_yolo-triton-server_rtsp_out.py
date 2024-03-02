@@ -33,6 +33,7 @@ import configparser
 import datetime
 import random
 import argparse
+import re
 
 from common.FPS import PERF_DATA
 from common.bus_call import bus_call
@@ -376,9 +377,24 @@ def main(args):
     if ts_from_rtsp:
         streammux.set_property("attach-sys-ts", 0)
 
+    
+    # Read the content of the configuration file
+    pgie_config_file="pgie_inferserver_config.txt"
+    with open(pgie_config_file, "r") as file:
+        config_content = file.read()
 
-    if triton_model == 'yolov9':
-        pgie.set_property("config-file-path", "yolov9_pgie_inferserver_config.txt")
+    # Define the pattern to search for the line containing "model_name"
+    pattern = r"model_name: \".*\""
+
+    # Replace the line containing "model_name" with the content of triton_model
+    new_config_content = re.sub(pattern, f"model_name: \"{triton_model}\"", config_content)
+
+    # Write the updated content back to the configuration file
+    with open(pgie_config_file, "w") as file:
+        file.write(new_config_content)
+
+ 
+    pgie.set_property("config-file-path", pgie_config_file )
 
     pgie_batch_size = pgie.get_property("batch-size")
     if pgie_batch_size != number_sources:
@@ -474,9 +490,9 @@ def parse_args():
     parser = argparse.ArgumentParser(description='RTSP Output Sample Application Help ')
     parser.add_argument("-i", "--input",
                   help="Path to input H264 elementry stream", nargs="+", default=["a"], required=True)
-    parser.add_argument("-m", "--model", default='yolov9',
-                    help="Choose between 'yolov9' ", 
-                    choices=['yolov9'], 
+    parser.add_argument("-m", "--model", required=True,
+                    help="Models", 
+                    choices=['yolov7','yolov7_qat','yolov9-c','yolov9-e','yolov9-c-converted', 'yolov9-e-converted','gelan-c','gelan-e'], 
                     type=str)
     parser.add_argument("-c", "--codec", default="H264",
                   help="RTSP Streaming Codec H264/H265 , default=H264", choices=['H264','H265'])
