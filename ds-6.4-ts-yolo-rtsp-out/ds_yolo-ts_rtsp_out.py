@@ -388,6 +388,23 @@ def main(args):
 
     # Replace the line containing "model_name" with the content of triton_model
     new_config_content = re.sub(pattern, f"model_name: \"{triton_model}\"", config_content)
+    
+
+    # Define the default value for custom_parse_bbox_func
+    custom_parse_bbox_func = "NvDsInferYolov7EfficientNMS"
+
+    # Check the value of triton_model and update custom_parse_bbox_func accordingly
+    if "yolov7" in triton_model:
+        custom_parse_bbox_func = "NvDsInferYolov7EfficientNMS"
+    if "yolov9" in triton_model:
+        custom_parse_bbox_func = "NvDsInferYolov9EfficientNMS"
+
+    # Define the pattern to search for the line containing "custom_parse_bbox_func"
+    pattern_custom = r"custom_parse_bbox_func: \".*\""
+
+    # Replace the line containing "custom_parse_bbox_func" with the updated value
+    new_config_content = re.sub(pattern_custom, f"custom_parse_bbox_func: \"{custom_parse_bbox_func}\"", new_config_content)
+
 
     # Write the updated content back to the configuration file
     with open(pgie_config_file, "w") as file:
@@ -492,7 +509,7 @@ def parse_args():
                   help="Path to input H264 elementry stream", nargs="+", default=["a"], required=True)
     parser.add_argument("-m", "--model", required=True,
                     help="Models", 
-                    choices=['yolov7','yolov7_qat','yolov9-c','yolov9-e','yolov9-c-converted', 'yolov9-e-converted','gelan-c','gelan-e'], 
+                    choices=['yolov7','yolov7x','yolov7-qat','yolov7x-qat','yolov9-c','yolov9-e'], 
                     type=str)
     parser.add_argument("-c", "--codec", default="H264",
                   help="RTSP Streaming Codec H264/H265 , default=H264", choices=['H264','H265'])

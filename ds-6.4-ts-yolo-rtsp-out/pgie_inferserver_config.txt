@@ -53,7 +53,7 @@ infer_config {
     copy_input_to_host_buffers: false
   }
   custom_lib {
-    path : "/opt/nvidia/deepstream/deepstream-6.4/lib/libnvds_infer_yolov9_efficient_nms.so"
+    path : "/opt/nvidia/deepstream/deepstream-6.4/lib/libnvds_infer_yolo_efficient_nms.so"
   }
 } 
 
