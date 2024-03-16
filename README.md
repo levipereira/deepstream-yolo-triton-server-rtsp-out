@@ -1,6 +1,6 @@
-# Sample Application Nvidia DeepStream - Triton-Server
+# Sample App Nvidia DeepStream - Triton-Server (YOLO Models)
 
-The Purpose of this repository is to create a DeepStream/Triton-Server sample application that utilizes `yolov7`, `yolov7-qat`, `yolov9` models to perform inference on video files or RTSP streams. It then showcases the output on an RTSP URL, providing a straightforward demonstration of end-to-end AI processing.
+The Purpose of this repository is to create a DeepStream/Triton-Server sample application that utilizes `yolov7`, `yolov7-qat`, `yolov9` `yolov9-qat` models to perform inference on video files or RTSP streams. It then showcases the output on an RTSP URL, providing a straightforward demonstration of end-to-end AI processing.
 
 Follow this steps to Use this Sample App
 

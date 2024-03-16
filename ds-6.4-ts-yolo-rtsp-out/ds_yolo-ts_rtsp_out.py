@@ -509,7 +509,7 @@ def parse_args():
                   help="Path to input H264 elementry stream", nargs="+", default=["a"], required=True)
     parser.add_argument("-m", "--model", required=True,
                     help="Models", 
-                    choices=['yolov7','yolov7x','yolov7-qat','yolov7x-qat','yolov9-c','yolov9-e'], 
+                    choices=['yolov7','yolov7x','yolov7-qat','yolov7x-qat','yolov9-c','yolov9-e', 'yolov9-c-qat','yolov9-e-qat'], 
                     type=str)
     parser.add_argument("-c", "--codec", default="H264",
                   help="RTSP Streaming Codec H264/H265 , default=H264", choices=['H264','H265'])
