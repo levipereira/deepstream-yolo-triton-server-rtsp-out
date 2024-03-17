@@ -45,7 +45,7 @@ infer_config {
     labelfile_path: "labels.txt"
     detection {
       num_detected_classes: 80
-      custom_parse_bbox_func: "NvDsInferYolov9EfficientNMS"
+      custom_parse_bbox_func: "NvDsInferYoloEfficientNMS"
     }
   }
 
@@ -53,7 +53,7 @@ infer_config {
     copy_input_to_host_buffers: false
   }
   custom_lib {
-    path : "/opt/nvidia/deepstream/deepstream-6.4/lib/libnvds_infer_yolo_efficient_nms.so"
+    path : "/opt/nvidia/deepstream/deepstream/lib/libnvds_infer_yolo_efficient_nms.so"
   }
 } 
 
