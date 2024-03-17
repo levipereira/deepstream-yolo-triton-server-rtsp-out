@@ -391,13 +391,7 @@ def main(args):
     
 
     # Define the default value for custom_parse_bbox_func
-    custom_parse_bbox_func = "NvDsInferYolov7EfficientNMS"
-
-    # Check the value of triton_model and update custom_parse_bbox_func accordingly
-    if "yolov7" in triton_model:
-        custom_parse_bbox_func = "NvDsInferYolov7EfficientNMS"
-    if "yolov9" in triton_model:
-        custom_parse_bbox_func = "NvDsInferYolov9EfficientNMS"
+    custom_parse_bbox_func = "NvDsInferYoloEfficientNMS"
 
     # Define the pattern to search for the line containing "custom_parse_bbox_func"
     pattern_custom = r"custom_parse_bbox_func: \".*\""
