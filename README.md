@@ -24,7 +24,7 @@ Follow the steps on below link to Start Triton Server<br>
 
 3.   Install Application for DeepStream 6.4 `ds-6.4-ts-yolo-rtsp-out` 
     Follow the steps on below link to Build DeepStream <br>
-    [DeepStream - YOLO](https://github.com/levipereira/docker_images/ds-6.4-ts-yolo)
+    [DeepStream - YOLO](https://github.com/levipereira/docker_images/tree/master/ds-6.4-ts-yolo)
 
 
 4. Using Sample Application `ds-6.4-ts-yolo-rtsp-out`  
